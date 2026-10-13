@@ -1,12 +1,25 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { SidenavComponent } from './shared/presentation/components/sidenav/sidenav.component';
 
+/**
+ * Root component of the GitHub CI/CD Node & Repository Management Platform.
+ *
+ * @summary Root standalone application shell component.
+ * @author Andy Alfredo Hipolito Salcedo Muñoz
+ */
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [SidenavComponent],
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('untitled1');
+  private readonly translate = inject(TranslateService);
+
+  constructor() {
+    this.translate.setFallbackLang('en');
+    this.translate.use('en');
+  }
 }

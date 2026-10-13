@@ -1,0 +1,60 @@
+{
+  "toolbar": {
+    "title": "GitHub CI/CD Node & Repository Management Platform",
+    "language-en": "EN",
+    "language-es": "ES",
+    "toggle-navigation": "Toggle navigation menu"
+  },
+  "navigation": {
+    "home": "Home",
+    "new-manifest": "New Repository Manifest"
+  },
+  "home": {
+    "title": "Home",
+    "subtitle": "Advanced CI/CD Node and Open Source Repository Management Platform.",
+    "section-title": "My CI Nodes",
+    "no-nodes": "No CI nodes available in the network."
+  },
+  "ci-nodes": {
+    "location-label": "Location",
+    "manifests-title": "Assigned Repository Manifests",
+    "no-manifests": "No repository manifests assigned to this node.",
+    "repository-name": "Repository Name",
+    "full-name": "Full Name",
+    "allocated-size": "Allocated Size",
+    "registered-at": "Registered At",
+    "total-allocated": "Total Allocated Storage",
+    "available-capacity": "Available Capacity",
+    "utilization-status": "Utilization Status",
+    "status-normal": "Normal",
+    "status-warning": "Warning",
+    "status-critical": "Critical",
+    "max-storage-capacity": "Max Storage Capacity"
+  },
+  "manifests": {
+    "title": "New Repository Manifest",
+    "subtitle": "Register Open Source Repository to Regional CI/CD Node",
+    "topic-label": "Topic",
+    "topic-placeholder": "Select a topic (e.g. angular, react)",
+    "repository-label": "Repository",
+    "repository-placeholder": "Select a GitHub repository",
+    "node-label": "CI Node",
+    "node-placeholder": "Select target CI/CD node",
+    "allocated-size-label": "Allocated Size (GB)",
+    "allocated-size-placeholder": "Enter storage capacity in GB",
+    "available-capacity-info": "Available storage capacity on selected node",
+    "error-required": "This field is required.",
+    "error-positive": "Allocated size must be greater than 0 GB.",
+    "error-exceeds-capacity": "Allocated size exceeds available CI node capacity",
+    "button-create": "Create",
+    "button-cancel": "Cancel",
+    "loading-repositories": "Loading repositories from GitHub...",
+    "stars": "stars"
+  },
+  "page-not-found": {
+    "title": "404 - Page Not Found",
+    "message": "The page you are looking for does not exist or has been moved.",
+    "attempted-url": "Requested URL",
+    "button-home": "Return to Home"
+  }
+}

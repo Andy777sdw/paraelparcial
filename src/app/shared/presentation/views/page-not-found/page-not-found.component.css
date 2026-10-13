@@ -1,0 +1,80 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 24px;
+}
+
+.error-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 48px;
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.icon-wrapper {
+  margin-bottom: 20px;
+}
+
+.error-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #f85149;
+}
+
+.error-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  margin: 0 0 12px;
+}
+
+.error-message {
+  font-size: 1rem;
+  color: #8b949e;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.url-badge {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.url-label {
+  font-size: 0.85rem;
+  color: #8b949e;
+}
+
+.url-code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  color: #58a6ff;
+  word-break: break-all;
+}
+
+.github-primary-btn {
+  background-color: #238636 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 6px;
+}
+
+.github-primary-btn:hover {
+  background-color: #2ea043 !important;
+}

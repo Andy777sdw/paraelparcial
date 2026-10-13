@@ -1,0 +1,28 @@
+<div class="not-found-container" role="region" aria-label="Page Not Found Error">
+  <div class="error-card">
+    <div class="icon-wrapper">
+      <mat-icon class="error-icon" aria-hidden="true">error_outline</mat-icon>
+    </div>
+
+    <h1 class="error-title">{{ 'page-not-found.title' | translate }}</h1>
+    <p class="error-message">{{ 'page-not-found.message' | translate }}</p>
+
+    <div class="url-badge" aria-label="Attempted URL path">
+      <span class="url-label">{{ 'page-not-found.requested-url' | translate }}:</span>
+      <code class="url-code">{{ attemptedUrl }}</code>
+    </div>
+
+    <div class="action-buttons">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="navigateHome()"
+        class="github-primary-btn"
+        aria-label="Return to Home page"
+      >
+        <mat-icon>home</mat-icon>
+        {{ 'page-not-found.button-home' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,18 @@
 {
-  "name": "untitled1",
-  "version": "0.0.0",
+  "name": "eanrcu20241e417",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "server": "json-server --watch server/db.json --port 3000"
   },
   "private": true,
   "packageManager": "npm@11.19.1",
   "dependencies": {
+    "@angular/animations": "^22.2.2",
     "@angular/cdk": "^22.2.2",
     "@angular/common": "^22.2.0",
     "@angular/compiler": "^22.2.0",

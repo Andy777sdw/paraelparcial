@@ -1,0 +1,54 @@
+<mat-toolbar
+  class="github-toolbar"
+  role="banner"
+  aria-label="GitHub CI/CD Node & Repository Management Platform Toolbar"
+>
+  <div class="toolbar-left">
+    <button
+      mat-icon-button
+      type="button"
+      (click)="onToggleSidenav()"
+      [attr.aria-label]="'toolbar.toggle-navigation' | translate"
+      class="menu-button"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="brand-container">
+      <img
+        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        alt="GitHub Logo"
+        class="github-logo"
+        width="32"
+        height="32"
+      />
+      <span class="platform-title">{{ 'toolbar.title' | translate }}</span>
+    </div>
+  </div>
+
+  <span class="toolbar-spacer"></span>
+
+  <div class="language-switcher" role="group" aria-label="Language selection">
+    <button
+      mat-button
+      type="button"
+      [class.active-lang]="currentLang() === 'en'"
+      (click)="switchLanguage('en')"
+      aria-label="Switch language to English"
+      class="lang-btn"
+    >
+      {{ 'toolbar.language-en' | translate }}
+    </button>
+    <span class="lang-divider" aria-hidden="true">|</span>
+    <button
+      mat-button
+      type="button"
+      [class.active-lang]="currentLang() === 'es'"
+      (click)="switchLanguage('es')"
+      aria-label="Switch language to Spanish"
+      class="lang-btn"
+    >
+      {{ 'toolbar.language-es' | translate }}
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,75 @@
+{
+  "ci-nodes": [
+    {
+      "id": "1",
+      "name": "us-east-ci-node-01",
+      "location": "North Virginia, USA",
+      "maxStorageCapacityGb": 500
+    },
+    {
+      "id": "2",
+      "name": "eu-central-ci-node-01",
+      "location": "Frankfurt, Germany",
+      "maxStorageCapacityGb": 800
+    },
+    {
+      "id": "3",
+      "name": "ap-southeast-ci-node-01",
+      "location": "Singapore",
+      "maxStorageCapacityGb": 350
+    },
+    {
+      "id": "4",
+      "name": "sa-east-ci-node-01",
+      "location": "São Paulo, Brazil",
+      "maxStorageCapacityGb": 200
+    }
+  ],
+  "repository-manifests": [
+    {
+      "id": "1",
+      "repositoryId": 24195339,
+      "repositoryName": "angular",
+      "fullName": "angular/angular",
+      "nodeId": "1",
+      "allocatedSizeGb": 120,
+      "registeredAt": "2026-10-10T10:15:30.000Z"
+    },
+    {
+      "id": "2",
+      "repositoryId": 41881960,
+      "repositoryName": "vscode",
+      "fullName": "microsoft/vscode",
+      "nodeId": "1",
+      "allocatedSizeGb": 180,
+      "registeredAt": "2026-10-11T12:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "repositoryId": 10270250,
+      "repositoryName": "react",
+      "fullName": "facebook/react",
+      "nodeId": "2",
+      "allocatedSizeGb": 620,
+      "registeredAt": "2026-10-09T08:20:00.000Z"
+    },
+    {
+      "id": "4",
+      "repositoryId": 27193779,
+      "repositoryName": "node",
+      "fullName": "nodejs/node",
+      "nodeId": "3",
+      "allocatedSizeGb": 280,
+      "registeredAt": "2026-10-11T16:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "repositoryId": 32285056,
+      "repositoryName": "TypeScript",
+      "fullName": "microsoft/TypeScript",
+      "nodeId": "4",
+      "allocatedSizeGb": 200,
+      "registeredAt": "2026-10-12T09:10:00.000Z"
+    }
+  ]
+}

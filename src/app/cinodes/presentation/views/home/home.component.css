@@ -1,0 +1,138 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.view-header {
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 16px;
+}
+
+.view-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.view-subtitle {
+  font-size: 0.95rem;
+  color: #8b949e;
+  margin: 0;
+}
+
+.nodes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f0f6fc;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-icon {
+  color: #58a6ff;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.nodes-counter {
+  font-size: 0.82rem;
+  color: #8b949e;
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.grid-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+}
+
+.loading-text {
+  color: #8b949e;
+  font-size: 0.9rem;
+}
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 12px;
+  background-color: #161b22;
+  border: 1px solid #f85149;
+  border-radius: 8px;
+}
+
+.alert-icon {
+  color: #f85149;
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+.error-text {
+  color: #f0f6fc;
+  font-size: 0.95rem;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+  background-color: #161b22;
+  border: 1px dashed #30363d;
+  border-radius: 8px;
+  color: #8b949e;
+}
+
+.empty-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #484f58;
+}
+
+@media (max-width: 900px) {
+  .nodes-grid {
+    grid-template-columns: 1fr;
+  }
+}

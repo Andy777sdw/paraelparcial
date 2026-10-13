@@ -1,0 +1,88 @@
+.github-toolbar {
+  background-color: #161b22;
+  color: #f0f6fc;
+  border-bottom: 1px solid #30363d;
+  height: 64px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-button {
+  color: #c9d1d9;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.github-logo {
+  border-radius: 50%;
+  filter: invert(1);
+  display: block;
+}
+
+.platform-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f0f6fc;
+  letter-spacing: -0.2px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+
+.lang-btn {
+  min-width: 40px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #8b949e;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  color: #f0f6fc;
+  background-color: rgba(110, 118, 129, 0.15);
+}
+
+.lang-btn.active-lang {
+  color: #ffffff;
+  background-color: #238636;
+}
+
+.lang-divider {
+  color: #30363d;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .platform-title {
+    font-size: 0.9rem;
+  }
+}

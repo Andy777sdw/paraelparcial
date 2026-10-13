@@ -1,0 +1,83 @@
+<mat-card
+  class="github-node-card"
+  appearance="outlined"
+  role="region"
+  [attr.aria-label]="'CI Node: ' + node().name"
+>
+  <!-- Card Header -->
+  <mat-card-header class="card-header">
+    <div mat-card-avatar class="node-avatar" aria-hidden="true">
+      <mat-icon>dns</mat-icon>
+    </div>
+    <mat-card-title class="node-title">{{ node().name }}</mat-card-title>
+    <mat-card-subtitle class="node-subtitle">
+      <mat-icon class="location-icon" aria-hidden="true">location_on</mat-icon>
+      <span>{{ node().location }}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- Card Content: Assigned Manifests -->
+  <mat-card-content class="card-content">
+    <div class="manifests-section">
+      <h3 class="section-heading">
+        <mat-icon class="heading-icon" aria-hidden="true">folder</mat-icon>
+        {{ 'ci-nodes.manifests-title' | translate }} ({{ manifests().length }})
+      </h3>
+
+      @if (manifests().length > 0) {
+        <ul class="manifests-list" role="list" aria-label="Assigned repository manifests list">
+          @for (manifest of manifests(); track manifest.id) {
+            <li class="manifest-item" role="listitem">
+              <div class="manifest-main">
+                <div class="repo-names">
+                  <span class="repo-name">{{ manifest.repositoryName }}</span>
+                  <span class="full-name">{{ manifest.fullName }}</span>
+                </div>
+                <div class="repo-meta">
+                  <span class="allocated-badge" [attr.aria-label]="'Allocated size: ' + manifest.allocatedSizeGb + ' GB'">
+                    {{ manifest.allocatedSizeGb }} GB
+                  </span>
+                </div>
+              </div>
+              <div class="manifest-date">
+                <span class="date-label">{{ 'ci-nodes.registered-at' | translate }}:</span>
+                <time [attr.datetime]="manifest.registeredAt">{{ manifest.registeredAt | date:'medium' }}</time>
+              </div>
+            </li>
+          }
+        </ul>
+      } @else {
+        <div class="empty-manifests" role="note">
+          <mat-icon class="empty-icon" aria-hidden="true">inbox</mat-icon>
+          <p>{{ 'ci-nodes.no-manifests' | translate }}</p>
+        </div>
+      }
+    </div>
+  </mat-card-content>
+
+  <mat-divider class="card-divider"></mat-divider>
+
+  <!-- Card Footer: Metrics -->
+  <mat-card-footer class="card-footer">
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <span class="metric-label">{{ 'ci-nodes.total-allocated' | translate }}</span>
+        <span class="metric-value">{{ totalAllocatedStorage() }} GB</span>
+      </div>
+
+      <div class="metric-box">
+        <span class="metric-label">{{ 'ci-nodes.available-capacity' | translate }}</span>
+        <span class="metric-value">{{ availableCapacity() }} GB</span>
+      </div>
+
+      <div class="metric-box status-box">
+        <span class="metric-label">{{ 'ci-nodes.utilization-status' | translate }}</span>
+        <div class="status-indicator" [ngClass]="statusClass()" [attr.aria-label]="'Status: ' + utilizationStatus()">
+          <mat-icon class="status-icon" aria-hidden="true">{{ statusIcon() }}</mat-icon>
+          <span class="status-text">{{ utilizationStatus() }}</span>
+          <span class="status-percentage">({{ utilizationPercentage() | number:'1.0-1' }}%)</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>

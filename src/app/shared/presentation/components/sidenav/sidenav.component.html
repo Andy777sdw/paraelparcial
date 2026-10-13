@@ -1,0 +1,51 @@
+<div class="layout-wrapper">
+  <app-toolbar (toggleSidenav)="toggle()"></app-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sidenav
+      [opened]="isOpened()"
+      mode="side"
+      class="github-sidenav"
+      role="navigation"
+      aria-label="Main Navigation"
+    >
+      <mat-nav-list class="nav-list">
+        <a
+          mat-list-item
+          routerLink="/home"
+          routerLinkActive="active-link"
+          aria-label="Navigate to Home"
+          class="nav-item"
+        >
+          <mat-icon matListItemIcon class="nav-icon">dns</mat-icon>
+          <span matListItemTitle class="nav-title">{{ 'navigation.home' | translate }}</span>
+        </a>
+
+        <a
+          mat-list-item
+          routerLink="/repositories/manifests/new"
+          routerLinkActive="active-link"
+          aria-label="Navigate to New Repository Manifest"
+          class="nav-item"
+        >
+          <mat-icon matListItemIcon class="nav-icon">post_add</mat-icon>
+          <span matListItemTitle class="nav-title">{{ 'navigation.new-manifest' | translate }}</span>
+        </a>
+      </mat-nav-list>
+
+      <div class="sidenav-footer">
+        <div class="user-chip">
+          <span class="author-name">Andy Hipolito</span>
+          <span class="student-code">u20241e417</span>
+        </div>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-content" role="main" aria-label="Main Content Area">
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

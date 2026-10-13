@@ -1,0 +1,171 @@
+<div class="manifest-new-container" role="region" aria-label="New Repository Manifest View">
+  <!-- View Header -->
+  <header class="view-header">
+    <h1 class="view-title">{{ 'manifests.title' | translate }}</h1>
+    <p class="view-subtitle">{{ 'manifests.subtitle' | translate }}</p>
+  </header>
+
+  <!-- Form Card -->
+  <mat-card class="form-card" appearance="outlined">
+    <mat-card-content>
+      <form
+        [formGroup]="manifestForm"
+        (ngSubmit)="onSubmit()"
+        class="manifest-form"
+        role="form"
+        aria-label="Register repository manifest form"
+        novalidate
+      >
+        <!-- 1. Topic Field -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ 'manifests.topic-label' | translate }}</mat-label>
+          <mat-select
+            formControlName="topic"
+            [placeholder]="'manifests.topic-placeholder' | translate"
+            aria-label="Select open source topic"
+          >
+            @for (t of availableTopics; track t) {
+              <mat-option [value]="t">
+                {{ t }}
+              </mat-option>
+            }
+          </mat-select>
+          @if (manifestForm.get('topic')?.hasError('required') && manifestForm.get('topic')?.touched) {
+            <mat-error>{{ 'manifests.error-required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- 2. Repository Selector (from GitHub API) -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ 'manifests.repository-label' | translate }}</mat-label>
+          <mat-select
+            formControlName="repositoryId"
+            [placeholder]="'manifests.repository-placeholder' | translate"
+            [disabled]="topicsStore.isLoading() || topicsStore.repositories().length === 0"
+            aria-label="Select GitHub repository"
+          >
+            @for (repo of topicsStore.repositories(); track repo.id) {
+              <mat-option [value]="repo.id">
+                <span class="repo-option-name">{{ repo.fullName }}</span>
+                <span class="repo-option-stars">
+                  <mat-icon class="star-icon" aria-hidden="true">star</mat-icon>
+                  {{ repo.stargazersCount | number }}
+                </span>
+              </mat-option>
+            }
+          </mat-select>
+
+          @if (topicsStore.isLoading()) {
+            <mat-hint class="loading-hint">
+              <mat-spinner diameter="16"></mat-spinner>
+              <span>{{ 'manifests.loading-repositories' | translate }}</span>
+            </mat-hint>
+          }
+
+          @if (manifestForm.get('repositoryId')?.hasError('required') && manifestForm.get('repositoryId')?.touched) {
+            <mat-error>{{ 'manifests.error-required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- 3. CI Node Selector -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ 'manifests.node-label' | translate }}</mat-label>
+          <mat-select
+            formControlName="nodeId"
+            [placeholder]="'manifests.node-placeholder' | translate"
+            aria-label="Select regional CI node"
+          >
+            @for (node of cinodesStore.nodes(); track node.id) {
+              <mat-option [value]="node.id">
+                {{ node.name }} ({{ node.location }}) — Max: {{ node.maxStorageCapacityGb }} GB
+              </mat-option>
+            }
+          </mat-select>
+          @if (manifestForm.get('nodeId')?.hasError('required') && manifestForm.get('nodeId')?.touched) {
+            <mat-error>{{ 'manifests.error-required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- 4. Allocated Size (GB) with Cross-Validation -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ 'manifests.allocated-size-label' | translate }}</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            formControlName="allocatedSizeGb"
+            [placeholder]="'manifests.allocated-size-placeholder' | translate"
+            aria-label="Enter storage size in GB"
+          />
+
+          @if (dynamicAvailableCapacity() !== null) {
+            <mat-hint class="capacity-hint">
+              {{ 'manifests.available-capacity-info' | translate }}:
+              <strong class="capacity-value">{{ dynamicAvailableCapacity() }} GB</strong>
+            </mat-hint>
+          }
+
+          @if (manifestForm.get('allocatedSizeGb')?.hasError('required') && manifestForm.get('allocatedSizeGb')?.touched) {
+            <mat-error>{{ 'manifests.error-required' | translate }}</mat-error>
+          }
+
+          @if (manifestForm.get('allocatedSizeGb')?.hasError('min') && manifestForm.get('allocatedSizeGb')?.touched) {
+            <mat-error>{{ 'manifests.error-positive' | translate }}</mat-error>
+          }
+
+          @if (hasCapacityError) {
+            <mat-error role="alert">
+              {{ 'manifests.error-exceeds-capacity' | translate }}
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Selected Repository Summary Preview -->
+        @if (selectedRepo(); as repo) {
+          <div class="repo-preview-card" role="region" aria-label="Selected repository summary">
+            <div class="preview-header">
+              <mat-icon class="preview-icon">code</mat-icon>
+              <span class="preview-title">{{ repo.fullName }}</span>
+            </div>
+            @if (repo.description) {
+              <p class="preview-desc">{{ repo.description }}</p>
+            }
+            <div class="preview-stats">
+              <span>
+                <mat-icon class="star-icon" aria-hidden="true">star</mat-icon>
+                {{ repo.stargazersCount | number }} {{ 'manifests.stars' | translate }}
+              </span>
+            </div>
+          </div>
+        }
+
+        <!-- Actions: Create and Cancel -->
+        <div class="form-actions">
+          <button
+            mat-button
+            type="button"
+            (click)="onCancel()"
+            class="cancel-btn"
+            aria-label="Cancel manifest creation"
+          >
+            {{ 'manifests.button-cancel' | translate }}
+          </button>
+
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="manifestForm.invalid || !selectedRepo() || cinodesStore.isLoading()"
+            class="create-btn"
+            aria-label="Create repository manifest"
+          >
+            @if (cinodesStore.isLoading()) {
+              <mat-spinner diameter="18" class="inline-spinner"></mat-spinner>
+            }
+            {{ 'manifests.button-create' | translate }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

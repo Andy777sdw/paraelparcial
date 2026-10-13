@@ -1,0 +1,61 @@
+<div class="home-container" role="region" aria-label="Home CI Nodes Dashboard">
+  <!-- View Header -->
+  <header class="view-header">
+    <h1 class="view-title">{{ 'home.title' | translate }}</h1>
+    <p class="view-subtitle">{{ 'home.subtitle' | translate }}</p>
+  </header>
+
+  <!-- Section: My CI Nodes -->
+  <section class="nodes-section" aria-labelledby="section-heading">
+    <div class="section-top">
+      <h2 id="section-heading" class="section-title">
+        <mat-icon class="section-icon" aria-hidden="true">dashboard</mat-icon>
+        {{ 'home.section-title' | translate }}
+      </h2>
+      <span class="nodes-counter" *ngIf="!cinodesStore.isLoading()">
+        {{ cinodesStore.totalNodes() }} nodes
+      </span>
+    </div>
+
+    <!-- Loading State -->
+    @if (cinodesStore.isLoading()) {
+      <div class="loading-state" role="status" aria-live="polite">
+        <mat-spinner diameter="48"></mat-spinner>
+        <p class="loading-text">Loading CI/CD nodes and manifests...</p>
+      </div>
+    }
+
+    <!-- Error State -->
+    @if (!cinodesStore.isLoading() && cinodesStore.errorMessage()) {
+      <div class="error-state" role="alert">
+        <mat-icon class="alert-icon">warning</mat-icon>
+        <p class="error-text">{{ cinodesStore.errorMessage() }}</p>
+        <button mat-flat-button color="warn" (click)="onRetry()">
+          <mat-icon>refresh</mat-icon>
+          Retry
+        </button>
+      </div>
+    }
+
+    <!-- Cards Grid (2 cards per row) -->
+    @if (!cinodesStore.isLoading() && !cinodesStore.errorMessage()) {
+      @if (cinodesStore.nodes().length > 0) {
+        <div class="nodes-grid" role="list" aria-label="CI Nodes Grid">
+          @for (node of cinodesStore.nodes(); track node.id) {
+            <div class="grid-cell" role="listitem">
+              <app-ci-node-summary-card
+                [node]="node"
+                [manifests]="getManifestsForNode(node.id)"
+              ></app-ci-node-summary-card>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state" role="note">
+          <mat-icon class="empty-icon">dns</mat-icon>
+          <p>{{ 'home.no-nodes' | translate }}</p>
+        </div>
+      }
+    }
+  </section>
+</div>

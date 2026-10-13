@@ -1,0 +1,105 @@
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0d1117;
+}
+
+.sidenav-container {
+  flex: 1;
+  background-color: #0d1117;
+}
+
+.github-sidenav {
+  width: 260px;
+  background-color: #161b22;
+  border-right: 1px solid #30363d;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-list {
+  padding-top: 16px;
+}
+
+.nav-item {
+  margin: 4px 12px;
+  border-radius: 6px;
+  color: #c9d1d9;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: rgba(110, 118, 129, 0.12);
+  color: #f0f6fc;
+}
+
+.nav-item.active-link {
+  background-color: rgba(56, 139, 253, 0.15);
+  color: #58a6ff;
+  border-left: 3px solid #1f6feb;
+}
+
+.nav-icon {
+  color: #8b949e;
+  margin-right: 12px;
+}
+
+.nav-item.active-link .nav-icon {
+  color: #58a6ff;
+}
+
+.nav-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.sidenav-footer {
+  padding: 16px;
+  border-top: 1px solid #30363d;
+  margin-top: auto;
+}
+
+.user-chip {
+  display: flex;
+  flex-direction: column;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.author-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f0f6fc;
+}
+
+.student-code {
+  font-size: 0.75rem;
+  color: #8b949e;
+  font-family: monospace;
+}
+
+.main-content {
+  background-color: #0d1117;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .github-sidenav {
+    width: 220px;
+  }
+  .content-wrapper {
+    padding: 16px;
+  }
+}

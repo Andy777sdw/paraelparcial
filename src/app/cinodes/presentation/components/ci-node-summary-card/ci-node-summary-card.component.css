@@ -1,0 +1,259 @@
+.github-node-card {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 8px !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-node-card:hover {
+  border-color: #58a6ff !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.node-avatar {
+  background-color: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.node-title {
+  color: #f0f6fc !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !important;
+}
+
+.node-subtitle {
+  color: #8b949e !important;
+  font-size: 0.85rem !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.location-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: #8b949e;
+}
+
+.card-content {
+  padding: 12px 20px;
+  flex: 1 1 auto;
+}
+
+.manifests-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-heading {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #c9d1d9;
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heading-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: #8b949e;
+}
+
+.manifests-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.manifest-item {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.manifest-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.repo-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.repo-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #58a6ff;
+}
+
+.full-name {
+  font-size: 0.78rem;
+  color: #8b949e;
+  font-family: monospace;
+}
+
+.allocated-badge {
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  color: #f0f6fc;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.manifest-date {
+  margin-top: 4px;
+  font-size: 0.72rem;
+  color: #8b949e;
+  display: flex;
+  gap: 4px;
+}
+
+.date-label {
+  color: #6e7681;
+}
+
+.empty-manifests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+  color: #8b949e;
+  background-color: #0d1117;
+  border: 1px dashed #30363d;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.empty-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 6px;
+  color: #484f58;
+}
+
+.card-divider {
+  border-color: #30363d !important;
+}
+
+.card-footer {
+  padding: 16px 20px !important;
+  background-color: #161b22;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  color: #8b949e;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.metric-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f0f6fc;
+}
+
+.status-box {
+  grid-column: span 1;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.status-indicator .status-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.status-indicator.status-normal {
+  background-color: rgba(46, 160, 67, 0.15);
+  border: 1px solid rgba(46, 160, 67, 0.4);
+  color: #3fb950;
+}
+
+.status-indicator.status-warning {
+  background-color: rgba(210, 153, 34, 0.15);
+  border: 1px solid rgba(210, 153, 34, 0.4);
+  color: #e3b341;
+}
+
+.status-indicator.status-critical {
+  background-color: rgba(248, 81, 73, 0.15);
+  border: 1px solid rgba(248, 81, 73, 0.4);
+  color: #f85149;
+}
+
+.status-percentage {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}

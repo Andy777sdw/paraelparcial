@@ -1,0 +1,60 @@
+{
+  "toolbar": {
+    "title": "GitHub CI/CD Node & Repository Management Platform",
+    "language-en": "EN",
+    "language-es": "ES",
+    "toggle-navigation": "Alternar menú de navegación"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "new-manifest": "Nuevo Manifiesto de Repositorio"
+  },
+  "home": {
+    "title": "Inicio",
+    "subtitle": "Advanced CI/CD Node and Open Source Repository Management Platform.",
+    "section-title": "Mis Nodos CI",
+    "no-nodes": "No hay nodos CI disponibles en la red."
+  },
+  "ci-nodes": {
+    "location-label": "Ubicación",
+    "manifests-title": "Manifiestos de Repositorio Asignados",
+    "no-manifests": "No hay manifiestos de repositorio asignados a este nodo.",
+    "repository-name": "Nombre del Repositorio",
+    "full-name": "Nombre Completo",
+    "allocated-size": "Tamaño Asignado",
+    "registered-at": "Registrado El",
+    "total-allocated": "Almacenamiento Total Asignado",
+    "available-capacity": "Capacidad Disponible",
+    "utilization-status": "Estado de Utilización",
+    "status-normal": "Normal",
+    "status-warning": "Advertencia",
+    "status-critical": "Crítico",
+    "max-storage-capacity": "Capacidad Máxima de Almacenamiento"
+  },
+  "manifests": {
+    "title": "Nuevo Manifiesto de Repositorio",
+    "subtitle": "Registrar Repositorio Open Source en un Nodo CI/CD Regional",
+    "topic-label": "Tema (Topic)",
+    "topic-placeholder": "Seleccione un topic (ej. angular, react)",
+    "repository-label": "Repositorio",
+    "repository-placeholder": "Seleccione un repositorio de GitHub",
+    "node-label": "Nodo CI",
+    "node-placeholder": "Seleccione el nodo CI/CD de destino",
+    "allocated-size-label": "Tamaño Asignado (GB)",
+    "allocated-size-placeholder": "Ingrese capacidad de almacenamiento en GB",
+    "available-capacity-info": "Capacidad de almacenamiento disponible en el nodo seleccionado",
+    "error-required": "Este campo es requerido.",
+    "error-positive": "El tamaño asignado debe ser mayor a 0 GB.",
+    "error-exceeds-capacity": "Allocated size exceeds available CI node capacity",
+    "button-create": "Crear",
+    "button-cancel": "Cancelar",
+    "loading-repositories": "Cargando repositorios desde GitHub...",
+    "stars": "estrellas"
+  },
+  "page-not-found": {
+    "title": "404 - Página No Encontrada",
+    "message": "La página que está buscando no existe o ha sido trasladada.",
+    "attempted-url": "URL Solicitada",
+    "button-home": "Volver al Inicio"
+  }
+}
