@@ -201,3 +201,132 @@ Build artifacts will be generated in `dist/untitled1/browser/`.
 - [x] Pure Assembler mapping patterns separating DTOs and entities.
 - [x] Standard TSDoc documentation with `@summary` and `@author` across the entire codebase.
 - [x] Accessible HTML markup with ARIA landmarks and descriptive labels.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Fase 1: Entorno, Configuración y Fake API (La Base)
+
+Antes de escribir código Angular, debes garantizar que las librerías, los datos simulados y los textos existan.
+
+1. package.json:
+   • Definir el nombre del proyecto (eanrcu20241e417).
+   • Instalar dependencias requeridas (@angular/material, @angular/cdk, @ngx-translate/core, @ngx-translate/http-
+   loader, json-server).
+   • Crear el script "server": "json-server --watch server/db.json --port 3000".
+2. server/db.json:
+   • Crear la Fake API con los datos iniciales de ci-nodes y repository-manifests para poder probar endpoints antes
+   de armar interfaces.
+3. src/environments/environment.ts:
+   • Definir las URLs (ciNodesApiUrl, manifestsApiUrl, githubSearchApiUrl).
+4. src/assets/i18n/en.json y es.json:
+   • Escribir los diccionarios con claves en estricto kebab-case (toolbar.*, ci-nodes.*, manifests.*, etc.).
+
+──────
+### Fase 2: Capa domain/ (El Núcleo del Negocio)
+
+El dominio no depende de nadie (ni de Angular, ni de HTTP, ni de Material). Son clases TypeScript puras.
+
+1. cinodes/domain/model/:
+   • ci-node.entity.ts: Clase CINode (id, name, location, maxStorageCapacityGb).
+   • repository-manifest.entity.ts: Clase RepositoryManifest (id, repositoryId, repositoryName, fullName, nodeId,
+   allocatedSizeGb, registeredAt).
+2. topics/domain/model/:
+   • github-repo.entity.ts: Clase GitHubRepo (id, name, fullName, stargazersCount, etc.).
+
+──────
+### Fase 3: Capa infrastructure/ (Comunicación Externa y Mapeos)
+
+Esta capa se encarga de hablar con las APIs externas (Fake API y GitHub API) y transformar sus datos hacia el
+dominio.
+
+1. Resources (DTOs / Request / Response):
+   • cinodes/infrastructure/resources/ci-node.resource.ts
+   • cinodes/infrastructure/resources/repository-manifest.resource.ts
+   • cinodes/infrastructure/resources/create-manifest.request.ts
+   • topics/infrastructure/resources/github-repo.resource.ts (con atributos snake_case como full_name)
+   • topics/infrastructure/resources/github-search-response.resource.ts
+2. Assemblers (Mapeadores Puros):
+   • cinodes/infrastructure/assemblers/ci-node.assembler.ts
+   • cinodes/infrastructure/assemblers/repository-manifest.assembler.ts
+   • topics/infrastructure/assemblers/github-repo.assembler.ts (convierte snake_case a camelCase de la entidad de
+   dominio)
+3. Services API (HttpClient):
+   • cinodes/infrastructure/services/ci-nodes-api.service.ts
+   • cinodes/infrastructure/services/repository-manifests-api.service.ts
+   • topics/infrastructure/services/github-api.service.ts
+
+──────
+### Fase 4: Capa application/ (Manejo de Estado con Signals)
+
+Orquesta la lógica de negocio y mantiene el estado reactivo que consumirá la UI.
+
+1. cinodes/application/cinodes.store.ts:
+   • Signals: nodes, manifests, isLoading, errorMessage.
+   • Computed: cálculos de getManifestsForNode(), getTotalAllocatedStorageForNode(), getAvailableCapacityForNode()
+   y getUtilizationStatusForNode() (Normal, Warning, Critical).
+   • Actions: loadAll(), createManifest().
+2. topics/application/topics.store.ts:
+   • Signals: repositories, selectedTopic, isLoading.
+   • Actions: searchRepositories(topic).
+
+──────
+### Fase 5: Capa presentation/ (Componentes y Vistas)
+
+Una vez que el Store y los modelos existen, la UI solo se encarga de enlazar datos y reaccionar.
+
+1. shared/presentation/components/:
+   • toolbar/ (toolbar.component.ts, .html, .css): Logo GitHub, título y switcher EN/ES con TranslateService.
+   • sidenav/ (sidenav.component.ts, .html, .css): Contenedor con mat-sidenav-container y enlaces de navegación.
+2. cinodes/presentation/components/:
+   • ci-node-summary-card/ (ci-node-summary-card.component.ts, .html, .css): Tarjeta reutilizable con métricas
+   calculadas y DatePipe.
+3. cinodes/presentation/views/ (Vistas ligadas a rutas):
+   • home/ (home.component.ts, .html, .css): Dashboard con grid de 2 tarjetas por fila.
+   • manifest-new/ (manifest-new.component.ts, .html, .css): Formulario reactivo con la validación cruzada
+   (allocatedSizeGb <= availableCapacity) y búsqueda en GitHub API.
+4. shared/presentation/views/:
+   • page-not-found/ (page-not-found.component.ts, .html, .css): Vista 404 que muestra la URL intentada y botón
+   hacia /home.
+
+──────
+### Fase 6: Shell, Enrutamiento y Estilos Globales (El Ensamble)
+
+1. src/app/app.routes.ts:
+   • Redirección '' -> '/home', ruta /home, ruta /repositories/manifests/new y comodín '**' ->
+   PageNotFoundComponent.
+2. src/app/app.config.ts:
+   • Registrar provideHttpClient(withFetch()), provideRouter(routes), provideAnimationsAsync() y configuración de
+   @ngx-translate.
+3. src/app/app.ts y app.html:
+   • Shell principal que renderiza <app-sidenav></app-sidenav>.
+4. src/styles.css e index.html:
+   • Tipografía Roboto e íconos Material Icons.
+   • Variables CSS del GitHub Dark Theme (#0d1117, #161b22, #30363d).
+
+──────
+### Fase 7: Validación, TSDoc y README.md (El Cierre Académico)
+
+1. Verificación funcional:
+   • Probar con npm run server y npm start.
+   • Validar switching de idiomas (EN/ES).
+   • Validar búsqueda de repositorios por topics en GitHub.
+   • Validar bloqueo reactivo si el tamaño supera la capacidad del nodo.
+2. Compilación estricta:
+   • Ejecutar npm run build para asegurar 0 errores de TypeScript y plantillas.
+3. Documentación TSDoc:
+   • Revisar que cada clase, interfaz y método tenga su bloque @summary y @author Andy Alfredo Hipolito Salcedo
+   Muñoz.
+4. README.md:
+   • Redactar en inglés el resumen arquitectónico, guía de ejecución y sección de autoría con código u20241e417.
